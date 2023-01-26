@@ -50,6 +50,10 @@ public class TransactionService {
 
         Transaction transaction=new Transaction();
 
+        transaction.setBook(book);
+        transaction.setCard(card);
+        transaction.setIssueOperation(true);
+
         if(book==null || !book.isAvailable()){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
             transactionRepository5.save(transaction);
