@@ -5,6 +5,10 @@ import com.driver.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+import static com.driver.models.CardStatus.DEACTIVATED;
+
 @Service
 public class StudentService {
 
@@ -16,26 +20,29 @@ public class StudentService {
     StudentRepository studentRepository4;
 
     public Student getDetailsByEmail(String email){
-        Student student = null;
 
+            Student student = null;
+        student=studentRepository4.findByEmailId(email);
         return student;
     }
 
     public Student getDetailsById(int id){
         Student student = null;
-
+        student= studentRepository4.findById(id).get();
         return student;
     }
 
     public void createStudent(Student student){
-
+        studentRepository4.save(student);
     }
 
     public void updateStudent(Student student){
-
+        studentRepository4.updateStudentDetails(student);
     }
 
     public void deleteStudent(int id){
         //Delete student and deactivate corresponding card
+        cardService4.cardRepository3.deactivateCard(id, DEACTIVATED.name());
+        studentRepository4.deleteById(id);
     }
 }

@@ -35,4 +35,52 @@ public class Card {
     public Card(){
         this.cardStatus = CardStatus.ACTIVATED;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCardStatus(CardStatus cardStatus) {
+        this.cardStatus = cardStatus;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public CardStatus getCardStatus() {
+        return cardStatus;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
 }

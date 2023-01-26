@@ -3,12 +3,16 @@ package com.driver.controller;
 import com.driver.models.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 //Add required annotations
+@Controller
+@RequestMapping("/student")
 public class StudentController {
 
     //Add required annotations
+    @GetMapping("/")
     public ResponseEntity getStudentByEmail(@RequestParam("email") String email){
         return new ResponseEntity<>("Student details printed successfully ", HttpStatus.OK);
     }

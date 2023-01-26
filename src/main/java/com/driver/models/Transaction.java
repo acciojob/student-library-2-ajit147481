@@ -36,5 +36,69 @@ public class Transaction {
 
     @CreationTimestamp
     private Date transactionDate;
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setFineAmount(int fineAmount) {
+        this.fineAmount = fineAmount;
+    }
+
+    public void setIssueOperation(boolean issueOperation) {
+        isIssueOperation = issueOperation;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setTransactionDate(Date transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    public void setTransactionStatus(TransactionStatus transactionStatus) {
+        this.transactionStatus = transactionStatus;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public Date getTransactionDate() {
+        return transactionDate;
+    }
+
+    public int getFineAmount() {
+        return fineAmount;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public TransactionStatus getTransactionStatus() {
+        return transactionStatus;
+    }
+
+    public boolean isIssueOperation() {
+        return isIssueOperation;
+    }
 }
 
