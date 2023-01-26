@@ -42,7 +42,7 @@ public class StudentService {
 
     public void deleteStudent(int id){
         //Delete student and deactivate corresponding card
-        cardService4.cardRepository3.deactivateCard(id, DEACTIVATED.name());
+        cardService4.deactivateCard(id);
         studentRepository4.deleteById(id);
     }
 }
