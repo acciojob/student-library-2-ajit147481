@@ -29,8 +29,8 @@ public class BookController {
                                    @RequestParam(value = "available", required = false, defaultValue = "false") boolean available,
                                    @RequestParam(value = "author", required = false) String author){
 
-        List<Book> bookList = null; //find the elements of the list by yourself
-
+         //find the elements of the list by yourself
+        List<Book> bookList = bookService.getBooks(genre, available, author);
         return new ResponseEntity<>(bookList, HttpStatus.OK);
 
     }
