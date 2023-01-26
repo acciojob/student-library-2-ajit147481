@@ -19,12 +19,12 @@ public class TransactionController {
     @PostMapping("/issueBook")
     public ResponseEntity issueBook(@RequestParam("cardId") int cardId, @RequestParam("bookId") int bookId) throws Exception{
         String transactionId=transactionService.issueBook(cardId,bookId);
-       return new ResponseEntity<>("transaction completed", HttpStatus.ACCEPTED);
+       return new ResponseEntity<>("transaction completed, here is your transactionId -"+transactionId, HttpStatus.ACCEPTED);
     }
 
     //Add required annotations
     public ResponseEntity returnBook(@RequestParam("cardId") int cardId, @RequestParam("bookId") int bookId) throws Exception{
         Transaction transaction=transactionService.returnBook(cardId,bookId);
-        return new ResponseEntity<>("transaction completed", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("transaction completed, here is your transactionId -"+transaction.getTransactionId(), HttpStatus.ACCEPTED);
     }
 }
