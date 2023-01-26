@@ -55,7 +55,7 @@ public class TransactionService {
             transactionRepository5.save(transaction);
             throw new Exception("Book is either unavailable or not present");
         }
-        if(card==null || card.getCardStatus()!= CardStatus.ACTIVATED){
+        if(card==null || card.getCardStatus().equals(CardStatus.DEACTIVATED)){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
             transactionRepository5.save(transaction);
             throw new Exception("Card is invalid");
@@ -65,19 +65,19 @@ public class TransactionService {
             transactionRepository5.save(transaction);
             throw new Exception("Book limit has reached for this card");
         }
+        book.setCard(card);
+        book.setAvailable(false);
         List<Book> books=card.getBooks();
         books.add(book);
         card.setBooks(books);
+
         cardRepository5.save(card);
 
-        book.setAvailable(false);
-        book.setCard(card);
         bookRepository5.updateBook(book);
 
-        transaction.setBook(book);
-        transaction.setCard(card);
         transaction.setTransactionStatus(TransactionStatus.SUCCESSFUL);
        transactionRepository5.save(transaction);
+
         return transaction.getTransactionId(); //return transactionId instead
     }
 
@@ -90,7 +90,7 @@ public class TransactionService {
         //make the book available for other users
         //make a new transaction for return book which contains the fine amount as well
         Date date=transaction.getTransactionDate();
-        long  timeIssuetime=System.currentTimeMillis()-date.getTime();
+        long  timeIssuetime=Math.abs(System.currentTimeMillis()-date.getTime());
         long no_of_days= TimeUnit.DAYS.convert(timeIssuetime,TimeUnit.MILLISECONDS);
 
         int fine=0;
@@ -103,7 +103,7 @@ public class TransactionService {
 
         bookRepository5.updateBook(book);
 
-        Transaction returnBookTransaction  = null;
+        Transaction returnBookTransaction  = new Transaction();
         returnBookTransaction.setBook(book);
         returnBookTransaction.setCard(transaction.getCard());
         returnBookTransaction.setIssueOperation(false);
